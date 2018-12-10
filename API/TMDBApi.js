@@ -1,11 +1,11 @@
 //API/TMDBApi.js
 const API_TOKEN = '2418b495a6ecaecd9a1baf3e99744930';
 
-export function getFilmsFromApiWithSearchedText(text, page){
-  const url = 'http://api.themoviedb.org/3/search/movie?api_key= '+ API_TOKEN + 'language=fr&query= '+ text + '&page=' +page
+export function getFilmsFromApiWithSearchedText (text, page) {
+  const url = 'https://api.themoviedb.org/3/search/movie?api_key=' + API_TOKEN + '&language=fr&query=' + text + "&page=" + page
   return fetch(url)
-  .then((response) => response.json())
-  .catch((error) => console.error(error))
+    .then((response) => response.json())
+    .catch((error) => console.error(error))
 }
 export function getImageFromApi (name) {
   return 'http://image.tmdb.org/t/p/w300' + name
