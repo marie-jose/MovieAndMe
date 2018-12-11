@@ -3,6 +3,8 @@
 import React from 'react'
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 import { getImageFromApi } from '../API/TMDBApi'
+import moment from 'moment'
+import numeral from 'numeral'
 import FadeIn from '../Animations/FadeIn'
 
 class FilmItem extends React.Component {
@@ -17,6 +19,14 @@ class FilmItem extends React.Component {
         />
       )
     }
+  }
+
+  _displayVisitedText() {
+    if (this.props.isVisitedFilm) {
+     // Si la props du film vaut true, on affiche : film marqué comme vu
+    }
+    return
+    <Text style={styles.visited_container}>Marquer comme vu</Text>
   }
 
   render() {
@@ -40,9 +50,14 @@ class FilmItem extends React.Component {
               <Text style={styles.description_text} numberOfLines={6}>{film.overview}</Text>
             </View>
             <View style={styles.date_container}>
-              <Text style={styles.date_text}>Sorti le 13/12/2017</Text>
+              <Text style={styles.date_text}>Sorti le {moment(new Date(film.release_date)).format('DD/MM/YYYY')}</Text>
             </View>
           </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+            style={styles.visited_container}
+            onPress={() =>this._toggleVisited()}>
+          {this._displayVisitedText()}
         </TouchableOpacity>
       </FadeIn>
     )
@@ -97,6 +112,10 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     marginRight: 5
+  },
+  visited_container:{
+    alignItems: 'center',
+    backgroundColor: '#009933',
   }
 })
 

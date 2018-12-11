@@ -33,6 +33,7 @@ class FilmDetails extends React.Component {
     }
 
     this._toggleFavorite = this._toggleFavorite.bind(this)
+    this._toggleVisited = this._toggleVisited.bind(this)
     this._shareFilm = this._shareFilm.bind(this)
   }
 
@@ -42,6 +43,7 @@ class FilmDetails extends React.Component {
       film: this.state.film
     })
   }
+
   componentDidMount() {
     const favoriteFilmIndex = this.props.favoritesFilm.findIndex(item => item.id === this.props.navigation.state.params.idFilm)
     if (favoriteFilmIndex !== -1) {
@@ -50,6 +52,15 @@ class FilmDetails extends React.Component {
       }, () => { this._updateNavigationParams() })
       return
     }
+
+    const visitedFilmIndex = this.props.visitedFilm.findIndex(item => item.id === this.props.navigation.state.params.idFilm)
+      if (visitedFilmIndex !== -1) {
+          this.setState({
+        film: this.props.visitedFilm[visitedFilmIndex]
+      }, () => { this._updateNavigationParams() })
+      return
+   }
+
     this.setState({ isLoading: true })
     getFilmDetailFromApi(this.props.navigation.state.params.idFilm).then(data => {
       this.setState({
@@ -74,6 +85,11 @@ class FilmDetails extends React.Component {
     this.props.dispatch(action)
   }
 
+  _toggleVisited(){
+    const action = {type: "TOGGLE_VISITED", value :this.state.film }
+    this.props.dispatch(action)
+  }
+
   _displayFavoriteImage() {
     var sourceImage = require('../Images/ic_favorite_border.png')
     var shouldEnlarge = false // Par défaut, si le film n'est pas en favoris, on veut qu'au clic sur le bouton, celui-ci s'agrandisse => shouldEnlarge à true
@@ -92,6 +108,16 @@ class FilmDetails extends React.Component {
     )
   }
 
+  _displayVisitedText() {
+    var text = 'Marquer comme vu' // Par défaut, si le film n'est pas vu, on veut qu'au clic sur le bouton pass au films vu
+    if (this.props.visitedFilm.findIndex(item => item.id === this.state.film.id) !== -1) {
+      text = 'Non vu ' // Si le film est dans les films vus, on veut qu'au clic sur le bouton, celui-ci soit retiré de la liste des films vus
+    }
+    return
+          <Text>text</Text>
+
+  }
+
   _displayFilm() {
     const { film } = this.state
     if (film != undefined) {
@@ -107,6 +133,11 @@ class FilmDetails extends React.Component {
               onPress={() => this._toggleFavorite()}>
               {this._displayFavoriteImage()}
           </TouchableOpacity>
+          <TouchableOpacity
+              style={styles.visited_container}
+              onPress={() =>this._toggleVisited()}>
+                {this._displayVisitedText()}
+          </TouchableOpacity>
           <Text style={styles.description_text}>{film.overview}</Text>
           <Text style={styles.default_text}>Sorti le {moment(new Date(film.release_date)).format('DD/MM/YYYY')}</Text>
           <Text style={styles.default_text}>Note : {film.vote_average} / 10</Text>
@@ -120,6 +151,7 @@ class FilmDetails extends React.Component {
               return company.name;
             }).join(" / ")}
           </Text>
+
         </ScrollView>
       )
     }
@@ -209,6 +241,10 @@ const styles = StyleSheet.create({
   favorite_container: {
     alignItems: 'center',
   },
+  visited_container:{
+    alignItems: 'center',
+    backgroundColor: '#009933',
+  },
   description_text: {
     fontStyle: 'italic',
     color: '#666666',
@@ -247,7 +283,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    favoritesFilm: state.toggleFavorite.favoritesFilm
+    favoritesFilm: state.toggleFavorite.favoritesFilm ,
+    visitedFilm: state.toggleVisited.visitedFilm
   }
 }
 

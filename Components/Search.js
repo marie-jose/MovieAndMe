@@ -1,4 +1,3 @@
-//Components/Search.js
 // Components/Search.js
 
 import React from 'react'
