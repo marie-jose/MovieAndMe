@@ -28,6 +28,12 @@ const FavoritesStackNavigator = createStackNavigator({
       title: 'Mes Favoris'
     }
   },
+  VisitedFilm: {
+    screen: VisitedFilm,
+    navigationOptions: {
+      title: 'Mes Films Vus'
+    }
+  },
   FilmDetails: {
     screen: FilmDetails
   }
@@ -51,6 +57,12 @@ const NewsStackNavigator = createStackNavigator({
     navigationOptions: {
       title: 'Les Derniers Films',
     },
+  },
+  VisitedFilm: {
+    screen: VisitedFilm,
+    navigationOptions: {
+      title: 'Mes Films Vus'
+    }
   },
   FilmDetails: {
     screen: FilmDetails,

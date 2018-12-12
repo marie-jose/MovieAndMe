@@ -109,13 +109,13 @@ class FilmDetails extends React.Component {
   }
 
   _displayVisitedText() {
-    var text = 'Marquer comme vu' // Par défaut, si le film n'est pas vu, on veut qu'au clic sur le bouton pass au films vu
-    if (this.props.visitedFilm.findIndex(item => item.id === this.state.film.id) !== -1) {
-      text = 'Non vu ' // Si le film est dans les films vus, on veut qu'au clic sur le bouton, celui-ci soit retiré de la liste des films vus
+    var text = 'Marquer comme vu'
+    if (this.props.isVisitedFilm) {
+     // Si la props du film vaut true, on affiche : film marqué comme vu
+     text = 'Non vu '
     }
     return
-          <Text>text</Text>
-
+    <Text style={styles.visitedText_container}>{text}</Text>
   }
 
   _displayFilm() {
@@ -244,6 +244,10 @@ const styles = StyleSheet.create({
   visited_container:{
     alignItems: 'center',
     backgroundColor: '#009933',
+    height: 25,
+  },
+  visitedText_container:{
+    color: '#9fa4a3',
   },
   description_text: {
     fontStyle: 'italic',

@@ -21,13 +21,7 @@ class FilmItem extends React.Component {
     }
   }
 
-  _displayVisitedText() {
-    if (this.props.isVisitedFilm) {
-     // Si la props du film vaut true, on affiche : film marqué comme vu
-    }
-    return
-    <Text style={styles.visited_container}>Marquer comme vu</Text>
-  }
+
 
   render() {
     const { film, displayDetailForFilm } = this.props
@@ -54,11 +48,7 @@ class FilmItem extends React.Component {
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity
-            style={styles.visited_container}
-            onPress={() =>this._toggleVisited()}>
-          {this._displayVisitedText()}
-        </TouchableOpacity>
+
       </FadeIn>
     )
   }
@@ -112,11 +102,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     marginRight: 5
-  },
-  visited_container:{
-    alignItems: 'center',
-    backgroundColor: '#009933',
-  }
+  }  
 })
 
 export default FilmItem

@@ -6,7 +6,7 @@ function toggleVisited(state = initialState, action) {
   let nextState
   switch (action.type) {
     case 'TOGGLE_VISITED':
-      const visitedFilmIndex = state.visitedFilmsFilm.findIndex(item => item.id === action.value.id)
+      const visitedFilmIndex = state.visitedFilm.findIndex(item => item.id === action.value.id)
       if (visitedFilmIndex !== -1) {
         // Le film est déjà dans les favoris, on le supprime de la liste
         nextState = {
