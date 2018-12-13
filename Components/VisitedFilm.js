@@ -2,7 +2,7 @@
 //Films visionnés VisitedFilm.js
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import FilmList from './FilmList'
+import FilmListVisited from './FilmListVisited'
 import { connect } from 'react-redux'
 
 
@@ -11,7 +11,7 @@ class VisitedFilm extends React.Component {
   render() {
     return (
       <View style={styles.main_container}>
-        <FilmList
+        <FilmListVisited
           films={this.props.visitedFilm}
           navigation={this.props.navigation}
           visitedList={true}
