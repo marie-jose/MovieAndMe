@@ -5,6 +5,7 @@ import { StyleSheet, Image } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation'
 import Search from '../Components/Search'
 import FilmDetails from '../Components/FilmDetails'
+import FilmDetailsVisited from '../Components/FilmDetailsVisited'
 import Favorites from '../Components/Favorites'
 import News from '../Components/News'
 import VisitedFilm from '../Components/VisitedFilm'
@@ -28,12 +29,6 @@ const FavoritesStackNavigator = createStackNavigator({
       title: 'Mes Favoris'
     }
   },
-  VisitedFilm: {
-    screen: VisitedFilm,
-    navigationOptions: {
-      title: 'Mes Films Vus'
-    }
-  },
   FilmDetails: {
     screen: FilmDetails
   }
@@ -46,8 +41,8 @@ const VisitedStackNavigator = createStackNavigator({
       title: 'Mes Films Vus'
     }
   },
-  FilmDetails: {
-    screen: FilmDetails
+  FilmDetailsVisited: {
+    screen: FilmDetailsVisited
   }
 })
 
@@ -57,12 +52,6 @@ const NewsStackNavigator = createStackNavigator({
     navigationOptions: {
       title: 'Les Derniers Films',
     },
-  },
-  VisitedFilm: {
-    screen: VisitedFilm,
-    navigationOptions: {
-      title: 'Mes Films Vus'
-    }
   },
   FilmDetails: {
     screen: FilmDetails,
@@ -91,7 +80,6 @@ const MoviesTabNavigator = createBottomTabNavigator(
         }
       }
     },
-
     News: {
       screen: NewsStackNavigator,
       navigationOptions: {
@@ -102,17 +90,16 @@ const MoviesTabNavigator = createBottomTabNavigator(
         }
       }
     },
-
-  VisitedFilm: {
-    screen: VisitedStackNavigator,
-    navigationOptions: {
-      tabBarIcon: () => {
-        return <Image
-          source={require('../Images/ic_visited.png')}
-          style={styles.icon}/>
+    VisitedFilm: {
+      screen: VisitedStackNavigator,
+      navigationOptions: {
+        tabBarIcon: () => {
+          return <Image
+            source={require('../Images/ic_visited.png')}
+            style={styles.icon}/>
+        }
       }
     }
-  }
   },
   {
     tabBarOptions: {
