@@ -110,12 +110,18 @@ class FilmDetails extends React.Component {
 
   _displayVisitedText() {
     var text = 'Marquer comme vu'
-    if (this.props.isVisitedFilm) {
+    var filmVu= false
+    if (this.isVisitedFilm) {
      // Si la props du film vaut true, on affiche : film marqué comme vu
      text = 'Non vu '
+     filmVu= true
     }
-    return
-    <Text style={styles.visitedText_container}>{text}</Text>
+    return (
+      <EnlargeShrink
+        filmVu={filmVu}>
+          <Text style={styles.visitedText_container} text={text}></Text>
+      </EnlargeShrink>
+    )
   }
 
   _displayFilm() {
@@ -248,6 +254,7 @@ const styles = StyleSheet.create({
   },
   visitedText_container:{
     color: '#9fa4a3',
+    textAlign: 'center'
   },
   description_text: {
     fontStyle: 'italic',

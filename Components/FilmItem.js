@@ -20,9 +20,6 @@ class FilmItem extends React.Component {
       )
     }
   }
-
-
-
   render() {
     const { film, displayDetailForFilm } = this.props
     return (
@@ -102,7 +99,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     marginRight: 5
-  }  
+  }
 })
 
 export default FilmItem
