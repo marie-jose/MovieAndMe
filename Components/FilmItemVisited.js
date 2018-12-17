@@ -9,6 +9,8 @@ import numeral from 'numeral'
 import FadeIn from '../Animations/FadeIn'
 
 class FilmItemVisited extends React.Component {
+
+
   _onLongPressButton() {
     return (
     <View style={styles.date_container}>

@@ -76,22 +76,6 @@ class FilmDetailsVisited extends React.Component {
     </TouchableOpacity>
 }
 
-//_displayVisitedText() {
-//  var text = 'Marquer comme vu'
-//  var filmVu= false
-//  if (this.props.VisitedFilm.findIndex(item => item.id === this.state.film.id) !== -1) {
-   // Si la props du film vaut true, on affiche : film marqué comme vu
-//   text = 'Non vu '
-//   filmVu= 'true'
-//  }
-//  return (
-//    <EnlargeShrink
-//      filmVu={filmVu}>
-//        <Text style={styles.visitedText_container} text={text}></Text>
-//    </EnlargeShrink>
-//  )
-// }
-
   _displayFilm() {
     const { film } = this.state
     if (film != undefined) {
